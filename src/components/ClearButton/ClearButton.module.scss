@@ -1,0 +1,21 @@
+.container {
+    margin: 1rem 0;
+    // padding: .6rem 1rem;
+    padding: .6em 1.2em;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 8px;
+    transition: background-color 10ms ease-in-out;
+    cursor: pointer;
+
+    div {
+        font-weight: 700;
+        font-style: italic;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    &:active {
+        background-color: #00000033;
+    }
+}
