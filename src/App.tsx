@@ -3,15 +3,19 @@ import style from "./style/App.module.scss"
 import { FC, useRef } from "react"
 import ReactSignatureCanvas from "react-signature-canvas"
 import Button from "./components/Button/Button"
-import { clearCanvas, submitCanvas } from "./functions/buttonsFunctions"
+import { clearCanvas, setApiUrl, submitCanvas } from "./functions/buttonsFunctions"
 
 const App: FC = () => {
   const canvas = useRef<ReactSignatureCanvas>(null)
+  const apiUrlInput = useRef<HTMLInputElement>(null);
 
   return (
     <div className={style.container}>
       <div className={style.drawAreaContainer}>
-        <input type="text" />
+        <div className={style.apiLinkContainer}>
+          <input type="text" ref={apiUrlInput} />
+          <Button type="SUBMIT" callback={() => setApiUrl(apiUrlInput)}>Set API URL</Button>
+        </div>
         <SigatureCanvas
           ref={canvas}
           penColor="white"
@@ -29,7 +33,7 @@ const App: FC = () => {
 
       <div className={style.buttonsContainer}>
         <Button callback={() => clearCanvas(canvas)}>Clear Board</Button>
-        <Button callback={() => submitCanvas(canvas)} type="SUBMIT">Submit</Button>
+        <Button callback={async () => await submitCanvas(canvas)} type="SUBMIT">Submit</Button>
         <Button callback={() => clearCanvas(canvas)} type="REMOVE">Remove</Button>
         <Button callback={() => clearCanvas(canvas)} type="WARNING">Warning</Button>
       </div>
