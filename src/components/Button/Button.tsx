@@ -8,8 +8,8 @@ type Props = {
 }
 
 const Button: FC<Props> = ({ children, type = "DEFAULT", callback }) => {
-    const handleClick = () => {
-        callback()
+    const handleClick = async () => {
+        await callback()
     }
 
     return (
